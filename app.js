@@ -1,3 +1,10 @@
+var count = 0;
+var interval = 30000;
+var clock = 0;
+
+function draw () {
+
+if (millis() - clock > interval) {
 var recognition = new webkitSpeechRecognition();
 recognition.lang = "en-US"
 recognition.continuous = true;
@@ -15,6 +22,7 @@ recognition.onresult = function(event) {
     var element = document.getElementById('container');
     element.appendChild(para);
     console.log(transcription);
+    console.log(compendium.analyse(transcription));
 };
 
 recognition.onend = function() {
@@ -34,6 +42,15 @@ function downloadInnerHtml(filename, elId, mimeType) {
     link.click(); 
 }
 
-setTimeout(function(){
 var fileName =  'tags.txt'; // You can use the .txt extension if you want
-downloadInnerHtml(fileName, 'container','text/html');}, 10000);
+downloadInnerHtml(fileName, 'container','text/html');
+
+// setTimeout(function(){
+// var fileName =  'tags.txt'; // You can use the .txt extension if you want
+// downloadInnerHtml(fileName, 'container','text/html');}, 10000);
+clock = millis();
+}
+}
+
+	
+
